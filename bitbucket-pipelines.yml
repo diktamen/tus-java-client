@@ -4,4 +4,5 @@ pipelines:
     - step:
         script:
           - bash ./gradlew build
-
+        artifacts: # defining the artifacts to be passed to each future step.
+          - ./build/libs/*.jar

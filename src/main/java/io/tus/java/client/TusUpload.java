@@ -5,7 +5,10 @@ import org.jetbrains.annotations.NotNull;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
+import java.io.RandomAccessFile;
+import java.nio.channels.Channels;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -32,17 +35,18 @@ public class TusUpload {
      * Create a new TusUpload object using the supplied file object. The corresponding {@link
      * InputStream}, size and fingerprint will be automatically set.
      *
-     * @param file The file whose content should be later uploaded.
+     * @param fileName The name of the file whose content should be later uploaded.
+     * @param buffer The random access file whose content should be later uploaded.
      * @throws FileNotFoundException Thrown if the file cannot be found.
      */
-    public TusUpload(@NotNull File file) throws FileNotFoundException {
-        size = file.length();
-        setInputStream(new FileInputStream(file));
+    public TusUpload(@NotNull String fileName, @NotNull RandomAccessFile buffer) throws IOException {
+        size = buffer.length();
+        setInputStream(Channels.newInputStream(buffer.getChannel()));
 
-        fingerprint = String.format("%s-%d", file.getAbsolutePath(), size);
+        fingerprint = String.format("%s-%d", fileName, size);
 
         metadata = new HashMap<String, String>();
-        metadata.put("filename", file.getName());
+        metadata.put("filename", fileName);
     }
 
     /**

@@ -2,6 +2,7 @@ package io.tus.java.example;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.RandomAccessFile;
 import java.net.URL;
 
 import io.tus.java.client.ProtocolException;
@@ -41,7 +42,7 @@ public final class Main {
             // a File object, you can manually construct a TusUpload using an InputStream.
             // See the documentation for more information.
             File file = new File("./example/assets/prairie.jpg");
-            final TusUpload upload = new TusUpload(file);
+            final TusUpload upload = new TusUpload(file.getName(), new RandomAccessFile(file, "r"));
 
             // You can also upload from an InputStream directly using a bit more work:
             // InputStream stream = …;
