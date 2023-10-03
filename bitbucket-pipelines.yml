@@ -6,7 +6,7 @@ pipelines:
           - apk update
           - apk add --no-cache bash shadow
           - bash ./gradlew --no-daemon build jar
-          - pwd
-          - find / -iname "*.jar"
+#          - pwd
+#          - find / -iname "*.jar"
         artifacts: # defining the artifacts to be passed to each future step.
-          - ~/build/libs/*.jar
+          - /opt/atlassian/pipelines/agent/build/build/libs/*.jar
