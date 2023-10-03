@@ -5,8 +5,6 @@ pipelines:
         script:
           - apk update
           - apk add --no-cache bash shadow
-          - chsh -s /bin/bash
-          - exec /bin/bash
           - bash ./gradlew build jar
           - pwd
           - find / -iname "*.jar"
