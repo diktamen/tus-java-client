@@ -3,10 +3,8 @@ pipelines:
   default:
     - step:
         script:
-          - bash ./gradlew build
+          - bash ./gradlew build jar
           - pwd
-          - ls -lah
-          - cd ~
-          - ls -Rla
+          - find / -iname "*.jar"
         artifacts: # defining the artifacts to be passed to each future step.
           - ~/build/libs/*.jar
