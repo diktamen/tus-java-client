@@ -9,4 +9,4 @@ pipelines:
 #          - pwd
 #          - find / -iname "*.jar"
         artifacts: # defining the artifacts to be passed to each future step.
-          - /opt/atlassian/pipelines/agent/build/build/libs/*.jar
+          - build/libs/**
