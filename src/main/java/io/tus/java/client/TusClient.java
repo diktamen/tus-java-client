@@ -7,6 +7,7 @@ import org.jetbrains.annotations.Nullable;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -226,7 +227,16 @@ public class TusClient {
             urlStore.set(upload.getFingerprint(), uploadURL);
         }
 
-        return createUploader(upload, uploadURL, 0L);
+        long resume = 0;
+        Map<String, List<String>> headerFields = connection.getHeaderFields();
+        if (headerFields.containsKey("Diktamen-Resume")) {
+            List<String> strings = headerFields.get("Diktamen-Resume");
+            if (strings.size() > 0) {
+                resume = Long.parseLong(strings.get(0).toString());
+            }
+        }
+
+        return createUploader(upload, uploadURL, resume);
     }
 
     @NotNull
@@ -304,7 +314,8 @@ public class TusClient {
         int responseCode = connection.getResponseCode();
         if (!(responseCode >= 200 && responseCode < 300)) {
             throw new ProtocolException(
-                    "unexpected status code (" + responseCode + ") while resuming upload", connection);
+                    "unexpected status code (" + responseCode + ") while resuming upload to " + connection.getURL(),
+                    connection);
         }
 
         String offsetStr = connection.getHeaderField("Upload-Offset");

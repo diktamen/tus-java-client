@@ -55,7 +55,10 @@ class TusInputStream {
             stream.skip(position - lastMark);
             lastMark = -1;
         } else {
-            stream.skip(position);
+            long skipped = stream.skip(position);
+            if (skipped != position) {
+                throw new IOException("Underlying stream does not contain enough bytes to skip to requested mark");
+            }
         }
 
         bytesRead = position;
