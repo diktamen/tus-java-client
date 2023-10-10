@@ -6,7 +6,7 @@ plugins {
 apply plugin: 'java'
 apply plugin: 'maven-publish'
 
-group 'io.tus.java.client'
+group 'com.diktamen.tus'
 
 allprojects {
     repositories {
@@ -50,9 +50,9 @@ def pomConfig = {
     url 'https://tus.io'
 
     scm {
-        url 'https://github.com/tus/tus-java-client'
-        connection 'https://github.com/tus/tus-java-client'
-        developerConnection 'https://github.com/tus/tus-java-client'
+        url 'https://github.com/lwahonen/tus-java-client'
+        connection 'https://github.com/lwahonen/tus-java-client'
+        developerConnection 'https://github.com/lwahonen/tus-java-client'
     }
 
     developers {
@@ -61,6 +61,12 @@ def pomConfig = {
             name 'Marius Kleidl'
             email 'maerious@gmail.com'
         }
+        developer {
+            id 'lwahonen'
+            name 'LW Ahonen'
+            email 'will@vaimea.ca'
+        }
+
     }
 
     inceptionYear '2015'
@@ -76,7 +82,7 @@ publishing {
     publications {
         mavenJava(MavenPublication) {
             from components.java
-            groupId = 'io.tus.java.client'
+            groupId = 'com.diktamen.tus'
             artifactId = 'tus-java-client'
             version project.getVersion()
             artifact sourcesJar
@@ -97,14 +103,4 @@ signing {
     def signingKey = System.getenv("SIGNING_KEY_AMORED")
     useInMemoryPgpKeys(signingKeyId, signingKey, signingPassword)
     sign publishing.publications.mavenJava
-}
-
-nexusPublishing {
-    repositories {
-        sonatype {
-            username = System.getenv("SONATYPE_USER")
-            password = System.getenv("SONATYPE_KEY")
-            stagingProfileId = System.getenv('SONATYPE_STAGING_PROFILE')
-        }
-    }
 }
