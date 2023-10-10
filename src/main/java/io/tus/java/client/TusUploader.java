@@ -38,20 +38,20 @@ public class TusUploader {
      * Begin a new upload request by opening a PATCH request to specified upload URL. After this
      * method returns a connection will be ready and you can upload chunks of the file.
      *
-     * @param client Used for preparing a request ({@link TusClient#prepareConnection(HttpURLConnection)}
-     * @param upload {@link TusUpload} to be uploaded.
-     * @param uploadURL URL to send the request to
-     * @param input Stream to read (and seek) from and upload to the remote server
-     * @param offset Offset to read from
+     * @param pclient Used for preparing a request ({@link TusClient#prepareConnection(HttpURLConnection)}
+     * @param pupload {@link TusUpload} to be uploaded.
+     * @param puploadURL URL to send the request to
+     * @param pinput Stream to read (and seek) from and upload to the remote server
+     * @param poffset Offset to read from
      * @throws IOException Thrown if an exception occurs while issuing the HTTP request.
      */
-    public TusUploader(TusClient client, TusUpload upload, URL uploadURL, TusInputStream input, long offset)
+    public TusUploader(TusClient pclient, TusUpload pupload, URL puploadURL, TusInputStream pinput, long poffset)
         throws IOException {
-        this.uploadURL = uploadURL;
-        this.input = input;
-        this.offset = offset;
-        this.client = client;
-        this.upload = upload;
+        this.uploadURL = puploadURL;
+        this.input = pinput;
+        this.offset = poffset;
+        this.client = pclient;
+        this.upload = pupload;
 
         input.seekTo(offset);
 

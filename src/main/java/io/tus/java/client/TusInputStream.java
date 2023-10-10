@@ -35,7 +35,7 @@ class TusInputStream {
      * @param buffer The array to write the bytes to
      * @param length Number of bytes to read at most
      * @return Actual number of bytes read
-     * @throws IOException
+     * @throws IOException An error
      */
     public int read(byte[] buffer, int length) throws IOException {
         int bytesReadNow = stream.read(buffer, 0, length);
@@ -47,12 +47,16 @@ class TusInputStream {
      * Seek to the position relative to the start of the stream.
      *
      * @param position Absolute position to seek to
-     * @throws IOException
+     * @throws IOException An error
      */
     public void seekTo(long position) throws IOException {
         if (lastMark != -1) {
             stream.reset();
-            stream.skip(position - lastMark);
+            long targetMark = position - lastMark;
+            long skipped = stream.skip(targetMark);
+            if (skipped != targetMark) {
+                throw new IOException("Underlying stream does not contain enough bytes to skip to requested mark");
+            }
             lastMark = -1;
         } else {
             long skipped = stream.skip(position);
@@ -78,7 +82,7 @@ class TusInputStream {
     /**
      * Close the underlying instance of InputStream.
      *
-     * @throws IOException
+     * @throws IOException An error
      */
     public void close() throws IOException {
         stream.close();

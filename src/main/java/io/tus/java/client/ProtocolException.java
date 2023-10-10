@@ -10,7 +10,7 @@ import java.net.HttpURLConnection;
 public class ProtocolException extends Exception {
 
     /**
-     * It's private OK
+     * It's private OK.
      */
     private HttpURLConnection connection;
 
@@ -25,11 +25,11 @@ public class ProtocolException extends Exception {
     /**
      Instantiates a new Object of type {@link ProtocolException}.
      * @param message Message to be thrown with the exception.
-     * @param connection {@link HttpURLConnection}, where the error occurred.
+     * @param hidesIt {@link HttpURLConnection}, where the error occurred.
      */
-    public ProtocolException(String message, HttpURLConnection connection) {
+    public ProtocolException(String message, HttpURLConnection hidesIt) {
         super(message);
-        this.connection = connection;
+        this.connection = hidesIt;
     }
 
     /**

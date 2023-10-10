@@ -232,7 +232,7 @@ public class TusClient {
         if (headerFields.containsKey("Diktamen-Resume")) {
             List<String> strings = headerFields.get("Diktamen-Resume");
             if (strings.size() > 0) {
-                resume = Long.parseLong(strings.get(0).toString());
+                resume = Long.parseLong(strings.get(0));
             }
         }
 

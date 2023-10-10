@@ -150,8 +150,8 @@ public class TusUpload {
     }
 
     /**
-     * Encode a byte-array using Base64. This is a sligtly modified version from an implementation
-     * published on Wikipedia (https://en.wikipedia.org/wiki/Base64#Sample_Implementation_in_Java)
+     * Encode a byte-array using Base64. This is a slightly modified version from an implementation
+     * published on Wikipedia
      * under the Creative Commons Attribution-ShareAlike License.
      * @param in input Byte array for Base64 encoding.
      * @return Base64 encoded String derived from input Bytes.
