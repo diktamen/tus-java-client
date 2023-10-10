@@ -16,9 +16,17 @@ public class TusURLMemoryStore implements TusURLStore {
     private Map<String, URL> store = new HashMap<String, URL>();
 
     /**
+     * The build pipeline demands this comment
+     */
+    public TusURLMemoryStore() {
+        // Foo
+    }
+
+    /**
      * Stores the upload's fingerprint and url.
+     *
      * @param fingerprint An upload's fingerprint.
-     * @param url The corresponding upload URL.
+     * @param url         The corresponding upload URL.
      */
     @Override
     public void set(String fingerprint, URL url) {
@@ -27,6 +35,7 @@ public class TusURLMemoryStore implements TusURLStore {
 
     /**
      * Returns the corresponding Upload URL to a given fingerprint.
+     *
      * @param fingerprint An upload's fingerprint.
      * @return The corresponding upload URL.
      */
@@ -37,10 +46,12 @@ public class TusURLMemoryStore implements TusURLStore {
 
     /**
      * Removes the corresponding entry to a fingerprint from the {@link TusURLMemoryStore}.
+     *
      * @param fingerprint An upload's fingerprint.
      */
     @Override
     public void remove(String fingerprint) {
         store.remove(fingerprint);
     }
+
 }

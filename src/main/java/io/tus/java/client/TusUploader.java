@@ -181,6 +181,7 @@ public class TusUploader {
      * @return Number of bytes read and written.
      * @throws IOException  Thrown if an exception occurs while reading from the source or writing
      *                      to the HTTP request.
+     * @throws ProtocolException For protocol errors
      */
     public int uploadChunk() throws IOException, ProtocolException {
         openConnection();
@@ -233,6 +234,7 @@ public class TusUploader {
      * @return Number of bytes read and written.
      * @throws IOException  Thrown if an exception occurs while reading from the source or writing
      *                      to the HTTP request.
+     * @throws ProtocolException For protocol errors
      */
     @Deprecated public int uploadChunk(int chunkSize) throws IOException, ProtocolException {
         openConnection();

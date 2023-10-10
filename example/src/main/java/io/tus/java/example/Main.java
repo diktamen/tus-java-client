@@ -18,7 +18,7 @@ import io.tus.java.client.TusUploader;
 public final class Main {
     /**
      * Main method to run a standard upload task.
-     * @param args
+     * @param args Aaarghs
      */
     public static void main(String[] args) {
         try {

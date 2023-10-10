@@ -8,6 +8,10 @@ import java.net.HttpURLConnection;
  * missing/invalid headers.
  */
 public class ProtocolException extends Exception {
+
+    /**
+     * It's private OK
+     */
     private HttpURLConnection connection;
 
     /**

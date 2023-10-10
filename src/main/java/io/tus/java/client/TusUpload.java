@@ -34,7 +34,7 @@ public class TusUpload {
      *
      * @param fileName The name of the file whose content should be later uploaded.
      * @param buffer The random access file whose content should be later uploaded.
-     * @throws FileNotFoundException Thrown if the file cannot be found.
+     * @throws IOException Thrown if the file cannot be found.
      */
     public TusUpload(@NotNull String fileName, @NotNull RandomAccessFile buffer) throws IOException {
         size = buffer.length();
