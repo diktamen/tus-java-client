@@ -130,7 +130,7 @@ public abstract class TusExecutor {
     protected abstract void makeAttempt() throws ProtocolException, IOException;
 
     /**
-     * The build pipeline demands this comment
+     * The build pipeline demands this comment.
      */
     public TusExecutor() {
         // Foo

@@ -16,7 +16,7 @@ public class TusURLMemoryStore implements TusURLStore {
     private Map<String, URL> store = new HashMap<String, URL>();
 
     /**
-     * The build pipeline demands this comment
+     * The build pipeline demands this comment.
      */
     public TusURLMemoryStore() {
         // Foo
