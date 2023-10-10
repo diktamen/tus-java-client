@@ -89,8 +89,8 @@ publishing {
             url = uri("https://maven.pkg.github.com/lwahonen/tus-java-client")
             credentials {
                 username = System.getenv("GITHUB_ACTOR")
-                password = System.getenv("secrets.GITHUB_TOKEN")
-            }
+                password = System.getenv("GITHUB_TOKEN")
+                }
         }
     }
     publications {
